@@ -11,7 +11,7 @@ CREATE OR REPLACE VIEW list_of_customers AS
     
 #------#
   
- CREATE OR REPLACE VIEW film_details AS
+CREATE OR REPLACE VIEW film_details AS
 	SELECT f.film_id, f.title, f.description, f.rental_rate, f.`length`, f.rating, GROUP_CONCAT(CONCAT_WS(" ", a.first_name, a.last_name) SEPARATOR ",") AS actors 
 	FROM film f 
 		INNER JOIN film_category fc USING(film_id)
@@ -43,18 +43,22 @@ CREATE OR REPLACE VIEW actor_information AS
 		WHERE a2.actor_id = a.actor_id) AS 'amount of films he/she acted on'
 	FROM actor a;
 
-#5 Analyze view actor_info, explain the entire query and specially how the sub query works.
-	Be very specific, take some time and decompose each part and give an explanation for each.
-	
-Se crea la view con ALGORITHM = UNDEFINED lo que hace que mysql elija entre MERGE y TEMPTABLE, afectando como mysql procesa la view.
-en el select trae id y nombre del actor y posteriormente en la cuarta columna muestra todas las peliculas en las que actuo ese actor
-pero agrupadas segun la categoria a la que pertenecen. Al ultimo esta el from y joins necesarios y un group by para agrupar por el actor.
-*/ 
-
 SELECT * FROM actor_info ai;
 
-/*6 Materialized views, write a description, why they are used, alternatives, DBMS were they exist, etc.
-Materialized view sirve para ver resultados de una query, diferenciandose por ser tablas que almacenan los resultados de una query.
-se usan por una mejor performance en una variedad de sistemas de manejo de bases de datos (dbms), pero no en mysql por lo que una alternativa
-seria usar triggers o hacerlo con stored procedures.
+
+/*
+5. Analyze view actor_info, explain the entire query and specially how the sub query works.
+Be very specific, take some time and decompose each part and give an explanation for each.
+	
+ALGORITHM = UNDEFINED crea la view, haciendo que MySQL elija entre MERGE y TEMPTABLE, viendose afectado asi el procesamiento de la view.
+El SELECT trae id y el nombre del actor, mostrando en la cuarta columna todas las peliculas donde este actuó agrupadas por categoría. 
+Luego hay un FROM y los JOINS necesarios, además de GOROUP BY que agrupa por actor.
+*/
+
+/*
+6. Materialized views, write a description, why they are used, alternatives, DBMS were they exist, etc.
+
+Materialized view sirve para ver los resultados de una query, diferenciandose por ser tablas que almacenan los resultados de una query.
+Son usados para una mejor performance en una variedad de sistemas de manejo de bases de datos, pero no en MySQL por lo que una 
+alternativa seria usar triggers o stored procedures.
 */
