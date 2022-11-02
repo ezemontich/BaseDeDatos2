@@ -1,4 +1,3 @@
-#1
 
 DELIMITER $
 
@@ -20,7 +19,7 @@ DELIMITER ;
 
 SELECT get_amount(1,1);
 
-#2
+#------#
 
 DELIMITER $
 DROP PROCEDURE IF EXISTS list_procedure $
@@ -68,7 +67,7 @@ END $
 CALL list_procedure('Argentina') $
 DELIMITER ;
 
-#3
+#------#
 
 #Inventory in stock
 
