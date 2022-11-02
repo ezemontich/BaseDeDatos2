@@ -10,9 +10,9 @@ INSERT INTO
     )
 SELECT
     1,
-    'MATÍAS',
-    'CABRAL',
-    'mati.cabral03@gmail.com',
+    'EZEQUIEL',
+    'MONTICH',
+    'ezequielmontich3@gmail.com',
     MAX(ad.address_id),
     1
 FROM address ad
@@ -27,7 +27,7 @@ WHERE ad.city_id IN (
             AND ci.city_id = ad.city_id
     );
 
-SELECT * FROM customer WHERE last_name = "CABRAL";
+SELECT * FROM customer WHERE last_name = "MONTICH";
 
 #------#
 
